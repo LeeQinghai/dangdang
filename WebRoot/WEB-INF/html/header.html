@@ -1,0 +1,7 @@
+<div class="header">
+<#if me??>
+	Welcome ${me.userName} &nbsp<a href="${basePath}logout">Logout</a>
+<#else>
+	<a href="${basePath}login">Login</a>&nbsp<a href="${basePath}user/register">Register</a>	
+</#if>
+</div>

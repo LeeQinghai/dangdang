@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>register.html</title>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <form action="user/register" method="POST">
+    	userId:<input type="text" name="userId" value="${userId!}"><br><br>
+    	userName:<input type="text" name="userName" value="${userName!}"><br><br>
+    	password:<input type="password" name="password" value="${password!}"><br><br>
+    	<input type="submit" value="register">
+    </form>
+  </body>
+</html>

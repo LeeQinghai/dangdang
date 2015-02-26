@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.devMode" value="true" />
+	<constant name="struts.static.browserCache" value="true"/>
+	<constant name="struts.action.extension" value=",action" />
+
+    <package name="default" namespace="/" extends="struts-default">
+    	  
+    	<default-action-ref name="default"></default-action-ref>
+    	
+    	<action name="default" class="com.qinghai.action.BaseAction">
+			<result type="freemarker">/WEB-INF/html/index.html</result>
+		</action>
+		
+        <action name="login" class="com.qinghai.action.LoginAction" method="login" >
+            <result name="success" type="freemarker">/WEB-INF/html/welcome.html</result>
+            <result name="error" type="freemarker">/WEB-INF/html/login.html</result>
+        </action>
+        
+        <action name="logout" class="com.qinghai.action.LoginAction" method="logout" >
+            <result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">login</param>
+			</result>
+        </action>
+        
+        <action name="test" class="com.qinghai.action.TestAction" method="test">
+        	<result name="success" type="freemarker">/WEB-INF/html/test.html</result>
+        </action>
+        
+    </package>
+    
+    <package name="user" namespace="/user" extends="struts-default">
+    	<action name="userList" class="com.qinghai.action.UserAction" method="userList">
+        	<result name="success" type="freemarker">/WEB-INF/html/userList.html</result>
+        	<result name="error" type="redirectAction">
+        		<param name="actionName">login</param>
+        		<param name="namespace">/</param>
+        	</result>
+        </action>
+        
+        <action name="register" class="com.qinghai.action.UserAction" method="registerUser">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">userList</param>
+        		<param name="namespace">/user</param>
+        	</result>
+        	<result name="register" type="freemarker">/WEB-INF/html/register.html</result>
+        	<result name="error" type="freemarker">/WEB-INF/html/register.html</result>
+        </action>
+        
+    </package>
+	
+</struts>
